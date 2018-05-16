@@ -1,18 +1,45 @@
-function myDate(){
-  var now = new Date();
-  var hour = now.getHours();
-  var min = now.getMinutes();
-  var sec = now.getSeconds();
+function clock(){
 
-  var hhmmss = hour + ":" + min + ":" + sec;
-
-  var mo = now.getMonth() + 1;
-  var date = now.getDate();
-  var year = now.getFullYear() - 2000;
-
-  var ddmmyy = mo + "/" + date + "/" + year;
-  document.body.innerText = hhmmss + " | " + ddmmyy;
-}
-setInterval( myDate, 1000);
-$("body").css("background-color", "teal")
-
+ var today = new Date();
+  
+  var hours = today.getHours();
+  var minutes = today.getMinutes();
+  var seconds = today.getSeconds();
+  
+  
+  if (hours >= 12){
+    meridiem = " PM";
+  }
+  else {
+    meridiem = " AM";
+  }
+ 
+  if (hours>12){
+    hours = hours - 12;
+  }
+  else if (hours===0){
+    hours = 12;	
+  }
+  
+  if (minutes<10){
+    minutes = "0" + minutes;
+  }
+  else {
+    minutes = minutes;
+  }
+  
+  if (seconds<10){
+    seconds = "0" + seconds;
+  }
+  else {
+    seconds = seconds;
+  }
+  
+  
+  document.getElementById("clock").innerHTML = (hours + ":" + minutes + ":" + seconds + meridiem);
+  
+  }
+  
+  
+  setInterval('clock()', 1000);
+  
